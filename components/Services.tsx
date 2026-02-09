@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, type Variants } from "framer-motion";
 
 const services = [
   {
@@ -21,20 +21,27 @@ const services = [
   },
 ];
 
-const container = {
-  hidden: {},
+const container: Variants = {
+  hidden: { opacity: 1 }, // must NOT be empty object
   show: {
-    transition: { staggerChildren: 0.12, delayChildren: 0.05 },
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.05,
+    },
   },
 };
 
-const item = {
+const item: Variants = {
   hidden: { opacity: 0, y: 26, scale: 0.98 },
   show: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: {
+      duration: 0.7,
+      ease: "easeOut", // now valid because Variants typed
+    },
   },
 };
 
@@ -70,6 +77,8 @@ export default function Services() {
                     alt=""
                     fill
                     className="object-cover object-center"
+                    sizes="(max-width: 768px) 100vw, 33vw"
+                    priority={false}
                   />
                 </div>
 
@@ -80,7 +89,7 @@ export default function Services() {
                 <div className="relative z-10">
                   <div className="flex items-center justify-center">
                     <div className="rounded-2xl border border-white/10 bg-black/40 p-4 shadow-glow transition group-hover:scale-[1.03]">
-                      <Image src={s.icon} alt="" width={70} height={70} />
+                      <Image src={s.icon} alt={s.title} width={70} height={70} />
                     </div>
                   </div>
 
