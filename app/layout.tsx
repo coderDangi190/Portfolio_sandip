@@ -1,5 +1,3 @@
-// import { icons } from "lucide-react";
-import { Apple } from "lucide-react";
 import "./globals.css";
 import type { Metadata } from "next";
 
