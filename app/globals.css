@@ -1,26 +1,110 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  @apply bg-black text-white;
+}
+
+/* marquee animation */
+
+.marquee {
+  display: inline-block;
+  animation: marquee 20s linear infinite;
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* floating icon animation */
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.float-icon {
+  animation: float 4s ease-in-out infinite;
+}
+
+/* skill hover glow */
+
+@keyframes softPulse {
+  0% {
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+  }
+  50% {
+    box-shadow: 0 0 18px rgba(16, 185, 129, 0.18);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+.skill-pulse:hover {
+  animation: softPulse 1.4s ease-in-out infinite;
+}
+
+/* ----------------------------- */
+/* INPUT DARK MODE FIX */
+/* removes white background */
+/* ----------------------------- */
+
+input,
+textarea,
+select {
+  background: transparent !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: none !important;
+}
+
+/* placeholder color */
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(255, 255, 255, 0.25) !important;
+}
+
+/* focus fix */
+
+input:focus,
+textarea:focus,
+select:focus {
+  background: transparent !important;
+  background-color: transparent !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* chrome autofill white background fix */
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus {
+  -webkit-text-fill-color: #ffffff !important;
+  -webkit-box-shadow: 0 0 0 1000px #121318 inset !important;
+  box-shadow: 0 0 0 1000px #121318 inset !important;
+  transition: background-color 9999s ease-in-out 0s;
+  caret-color: #ffffff !important;
 }
