@@ -1,5 +1,13 @@
+import type { Metadata } from "next";
 import "./globals.css";
 
+export const metadata: Metadata = {
+  title: "Sandip Dangi | DevOps Engineer",
+  description: "Portfolio of Sandip Dangi, DevOps Engineer from Nepal",
+  icons: {
+    icon: "/assets/logo/logo_2.png", // This points to the logo I saw in your screenshot
+  },
+};
 export default function RootLayout({
   children,
 }: {
